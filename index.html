@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Atividade para fixação 4</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+		input {
+			margin-top: 30px;
+		}
+
+		button {
+			margin-top: 30px;
+			padding: 4.5px;
+		}
+
+		div {
+			background:  #e4e8e9;
+			width: 385px;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<input id="resultado" type="text">
+
+	<button onclick="adicionar()">Adicionar</button>
+
+	<button onclick="ordenar()">Ordenar</button>
+
+	<ul id="lista-array"></ul>
+
+	<script>
+		var objetos = Array('Cadeira', 'Impressora', 'Garfo')
+			
+		function adicionar(){
+
+			if(document.getElementById('resultado').value === ''){
+				alert('Informe um valor válido!')
+			}
+		    
+		    else{
+
+		       // guarda na variável conteudo o que foi digitado no input
+    	       var conteudo = document.getElementById('resultado').value
+
+    	       // captura o indice do Array, se a variavel conteúdo não existir no Array objetos retornara -1
+    	       var aux = objetos.indexOf(conteudo)
+
+	    	       //testar se o valor capturado no input, se existe no Array objetos
+				   if(aux === -1) {
+
+				     //insere o valor no Array objetos
+				     objetos.push(conteudo)
+
+				     // lista na tela elementos <li> com os dados do Array objetos
+				     gerar()
+
+				   } else {
+				   	 alert('Objeto já foi adicionado')
+				   }
+			         //Lembre-se, a pesquisa é case sensitive!
+
+			         //limpa o conteúdo do input
+	    	         document.getElementById('resultado').value = ''
+		    }
+
+		    
+
+     	}
+         // Gera na tela elementos <li> com os dados do Array objetos
+     	function gerar(){
+
+     		    //limpa tela
+		    	document.getElementById('lista-array').innerHTML = '<ul id="lista-array"></ul>'
+
+		    	//captura o elemento <ul id="lista-array"></ul>
+		    	let lista = document.getElementById('lista-array')
+
+
+		    	for(var i=0; i<objetos.length; i++){
+		    		let item = document.createElement('li')
+		    		item.appendChild(document.createTextNode(objetos[i]))
+		    		lista.appendChild(item)
+
+		    	}
+		    }
+
+         // ordena usando a função sort() e lista na tela usando a função gerar()
+		function ordenar(){
+			objetos.sort()
+			gerar()
+		}
+
+
+	</script>
+
+</body>
+</html>
